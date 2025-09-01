@@ -2,6 +2,23 @@ html, body, #root {
   height: 100%;
 }
 
+ .topbar{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 64px;                
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.7);
+}
+.app.dark .topbar{
+  background: rgba(15,25,40,0.7);
+}
+
+/* Safe area insets */
+.container{
+  padding-top: env(safe-area-inset-top);
+}
+
 * { box-sizing: border-box; }
 
 /* Global typography & default (light) background */
