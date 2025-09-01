@@ -2,14 +2,8 @@ html, body, #root {
   height: 100%;
 }
 
- .topbar{
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  height: 64px;                
-  backdrop-filter: blur(10px);
-  background: rgba(255,255,255,0.7);
-}
+
+
 .app.dark .topbar{
   background: rgba(15,25,40,0.7);
 }
@@ -53,17 +47,28 @@ body:has(.app.dark) {
 
 .container { max-width: 1100px; margin: 0 auto; }
 
-/* ===== Header / Controls ===== */
-.topbar {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  margin: 8px auto 16px;
-  position: sticky;   /* sticky with subtle blur */
+ .topbar{
+  position: sticky;
   top: 0;
-  z-index: 20;
-  backdrop-filter: blur(6px);
+  z-index: 1000;
+  height: 64px;                
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.7);
 }
+.topbar,
+.controls { position: relative; z-index: 5; }
+.now      { position: relative; z-index: 1; }
+
+/* mobile */
+@media (max-width: 480px) {
+  .controls{
+    display: flex;
+    flex-wrap: wrap;         
+    gap: 10px 8px;
+    margin-bottom: 14px;       
+  }
+
+  .search button { min-width: 110px; }
 
 .app-title {
   margin: 0;
@@ -176,12 +181,27 @@ body:has(.app.dark) {
 }
 
 /* ===== Unit toggle ===== */
-.unit-toggle {
-  display: inline-flex;
-  border: 1px solid #c9d8ff;
+.unit-toggle{
   border-radius: 999px;
-  overflow: hidden;
+  padding: 2px;
+  background: rgba(255,255,255,.7);
 }
+.app.dark .unit-toggle{
+  background: rgba(15,25,40,.7);
+}
+
+
+.unit-toggle button{
+  font-weight: 700;
+  opacity: .95;
+}
+
+.unit-toggle button.active{
+  background: #2f6cf6;         
+  color: #fff;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.75) inset;
+}
+
 .unit-toggle button {
   padding: 6px 12px;
   background: transparent;
