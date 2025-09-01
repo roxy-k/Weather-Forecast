@@ -238,7 +238,7 @@ setWeather({ current, hourly24, daily5, locationName, timezoneOffset: tz });
       )}
 
         <footer className="footer">
-  <p className="footer-title">Weather Forecast App</p>
+  
   <p className="footer-meta">
     © {new Date().getFullYear()} Built by Oksana Katysheva • Data by 
     <a href="https://openweathermap.org/" target="_blank" rel="noopener noreferrer">
