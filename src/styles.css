@@ -571,3 +571,24 @@ body:has(.app.dark) {
 @media (max-width:560px){
   .unit-toggle { height: 44px; display: inline-flex; align-items: center; }
 }
+
+ /* Non-sticky topbar (override) */
+.topbar{
+  position: static !important;   
+  top: auto !important;
+  z-index: auto;                  
+  backdrop-filter: none;         
+}
+
+
+@media (max-width: 560px){
+  .topbar{
+    position: static !important;
+    top: auto !important;
+    z-index: auto;
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+
+  .container{ padding-top: 0; }
+}
