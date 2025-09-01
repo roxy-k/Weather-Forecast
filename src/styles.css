@@ -8,14 +8,14 @@ body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: #0f172a;
-  /* фон по умолчанию — светлая тема */
+  /* light theme */
   background:
     radial-gradient(900px 600px at 15% -10%, #eef6ff 25%, transparent 60%),
     radial-gradient(1200px 800px at 85% 0%, #dff0ff 15%, transparent 55%),
     linear-gradient(#cfe6ff, #eaf3ff 45%, #d6e7ff);
 }
 
-/* когда активна тёмная тема */
+/* dark theme */
 body:has(.app.dark) {
   background:
     radial-gradient(900px 600px at 20% -10%, #0f1a2c 20%, transparent 60%),
@@ -505,10 +505,9 @@ body:has(.app.dark) {
     align-items: center;
   }
 }
-/* === MOBILE PANEL LAYOUT (append-only) === */
+/* MOBILE PANEL LAYOUT */
 @media (max-width: 560px) {
-  /* Делаем .topbar родителем-сеткой,
-     а .controls «прозрачным контейнером», чтобы её дети легли в сетку topbar */
+  /* topbar */
   .app .topbar {
     display: grid !important;
     grid-template-columns: 1fr auto;
@@ -522,19 +521,53 @@ body:has(.app.dark) {
   .app .app-title   { grid-area: title; }
   .app .unit-toggle { grid-area: units; justify-self: end; height: 44px; display: inline-flex; align-items: center; }
 
-  /* позволяем дочерним кнопкам .controls стать элементами сетки topbar */
+
   .app .controls { display: contents !important; }
 
-  /* поиск на всю ширину второй строки; внутри — своя мини-сетка */
+
   .app .search { grid-area: search; display: grid; grid-template-columns: 1fr auto; gap: 8px; }
   .app .search-inputwrap { min-width: 0; }
   .app .search input  { height: 44px; }
   .app .search button { height: 44px; padding: 0 14px; }
 
-  /* гео-кнопка и (если есть) отдельная submit-кнопка */
+
   .app .geo-btn    { grid-area: geo;    width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; }
   .app .submit-btn { grid-area: submit; height: 44px; padding: 0 14px; justify-self: end; }
 
-  /* на всякий случай — не даём детям распирать контейнеры */
+  
   .app .topbar > * { min-width: 0; }
+}
+  
+
+
+/* Unit toggle: iOS/Safari fix  */
+.unit-toggle{
+  
+  padding: 2px;                    
+  border-radius: 999px;
+  overflow: hidden;                
+  background: rgba(255,255,255,.7);
+  -webkit-mask-image: -webkit-radial-gradient(white, black); 
+}
+
+.unit-toggle button{
+  border-radius: 999px;            
+  background-clip: padding-box;    
+  -webkit-background-clip: padding-box;
+  overflow: hidden;                
+  outline: 1px solid transparent;  
+  -webkit-tap-highlight-color: transparent;
+  transform: translateZ(0);       
+  will-change: transform;
+}
+
+.unit-toggle button.active{
+  background: var(--brand, #9cb7e5); 
+  color: #fff !important;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.75) inset; 
+}
+
+
+@media (max-width:560px){
+  .unit-toggle { height: 44px; display: inline-flex; align-items: center; }
 }
